@@ -1,0 +1,84 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: white;
+
+  background: url("https://images.unsplash.com/photo-1518091043644-c1d4457512c6") no-repeat center center fixed;
+  background-size: cover;
+}
+h1 {
+  background: rgba(0,0,0,0.8);
+  padding: 15px;
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: 2px;
+}
+
+.container {
+  background: rgba(0,0,0,0.7);
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 15px rgba(255,255,0,0.5);
+}
+
+input, select {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: none;
+}
+
+button {
+  background: yellow;
+  color: black;
+  padding: 12px 20px;
+  margin: 10px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+/* Hover animation */
+button:hover {
+  background: orange;
+  transform: scale(1.1);
+}
+
+/* Click animation */
+button:active {
+  transform: scale(0.95);
+}
+
+button:hover {
+  background: orange;
+}
+
+#userInfo {
+  margin-top: 10px;
+  font-size: 14px;
+  color: lightgreen;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 0;
+}
+
+body * {
+  position: relative;
+  z-index: 1;
+}

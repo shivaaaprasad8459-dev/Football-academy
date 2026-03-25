@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Football Academy</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>⚽ Football Academy Trials</h1>
+<p>Train like a pro. Play like a champion🏆.</p>
+<p>📍 Location: BANGALORE</p>
+<p>📅 Trials every weekend</p>
+<p>📞 Contact: 8496857675</p>
+
+<!-- LOGIN / SIGNUP -->
+<h2>Account</h2>
+<div class="container">
+
+<h2>🔐 Account</h2>
+
+<input type="email" id="email" placeholder="Email"><br>
+<input type="password" id="password" placeholder="Password"><br>
+
+<button onclick="signup()">Sign Up</button>
+<button onclick="login()">Login</button>
+<button onclick="logout()">Logout</button>
+
+<p id="userInfo">Not logged in</p>
+
+</div>
+
+<hr>
+
+<!-- REGISTRATION FORM -->
+<h2>Register for Trials</h2>
+
+
+<div class="container" id="formSection" style="display:none;">
+  <form id="trialForm" action="https://formspree.io/f/xkopnwnr" method="POST">
+
+<input type="text" name="name" placeholder="Full Name" required><br>
+
+<input type="email" name="email" placeholder="Email" required><br>
+
+<input type="tel" name="phone" placeholder="Phone Number" required><br>
+
+<select name="position" required>
+  <option value="">Select Position</option>
+  <option>Striker</option>
+  <option>Midfielder</option>
+  <option>Defender</option>
+  <option>Goalkeeper</option>
+</select><br>
+
+<select name="age_group" required>
+  <option value="">Select Age Group</option>
+  <option>U12</option>
+  <option>U14</option>
+  <option>U16</option>
+  <option>U18</option>
+</select><br>
+
+<input type="date" name="trial_date" required><br>
+
+<button type="submit">Register</button>
+
+</form>
+</div>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
