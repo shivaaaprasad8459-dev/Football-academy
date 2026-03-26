@@ -74,5 +74,32 @@
 
 <script src="script.js"></script>
 
+<script>
+document.getElementById("trialForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const data = {
+        name: document.querySelector('input[name="name"]').value,
+        email: document.querySelector('input[name="email"]').value
+    };
+
+    try {
+        const response = await fetch("YOUR_BACKEND_URL/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        alert(result.message);
+    } catch (error) {
+        alert("Error submitting form");
+    }
+});
+</script>
+
 </body>
 </html>
+
