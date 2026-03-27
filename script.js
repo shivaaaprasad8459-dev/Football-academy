@@ -41,3 +41,37 @@ function logout() {
   firebase.auth().signOut()
     .then(() => alert("Logged out!"));
 }
+
+// TRIAL FORM SUBMIT
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("trialForm");
+
+    if (form) {
+        form.addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            alert("Form submitted");
+
+            const data = {
+                name: document.querySelector('input[name="name"]').value,
+                email: document.querySelector('input[name="email"]').value
+            };
+
+            try {
+                const response = await fetch("https://2a05bc4c-aa29-4f87-a50a-f64aee66c885-00-2vdnq7uh50td4.pike.replit.dev/add-player", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+                alert(result.message);
+            } catch (error) {
+                console.error(error);
+                alert("Error submitting form");
+            }
+        });
+    }
+});
