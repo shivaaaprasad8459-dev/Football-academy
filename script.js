@@ -76,3 +76,25 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 }); 
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        document.getElementById("userInfo").innerText =
+            "Logged in as: " + user.email;
+
+        // hide login
+        document.getElementById("authSection").style.display = "none";
+
+        // show form
+        document.getElementById("mainContent").style.display = "block";
+
+    } else {
+        document.getElementById("userInfo").innerText = "Not logged in";
+
+        // show login
+        document.getElementById("authSection").style.display = "block";
+
+        // hide form
+        document.getElementById("mainContent").style.display = "none";
+    }
+});
