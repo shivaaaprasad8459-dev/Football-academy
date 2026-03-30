@@ -34,6 +34,7 @@ function signup() {
 
 // LOGIN
 function login() {
+alert("Login clicked");
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
