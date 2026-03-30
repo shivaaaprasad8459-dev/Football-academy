@@ -14,7 +14,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     document.getElementById("userInfo").innerText = "Not logged in";
     document.getElementById("formSection").style.display = "none";
   }
-});
+}); 
 
 // SIGNUP
 function signup() {
