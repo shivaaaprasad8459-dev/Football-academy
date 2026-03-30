@@ -11,9 +11,15 @@ firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     document.getElementById("userInfo").innerText = "Logged in as: " + user.email;
     document.getElementById("formSection").style.display = "block";
-  } else {
+
+if (user.email === "shivaaaprasad8459@gmail.com") {
+    document.getElementById("adminLink").style.display = "block";
+}
+
+   else {
     document.getElementById("userInfo").innerText = "Not logged in";
     document.getElementById("formSection").style.display = "none";
+document.getElementById("adminLink").style.display = "none";
   }
 }); 
 
