@@ -1,5 +1,4 @@
 // 🔥 PASTE YOUR FIREBASE CONFIG HERE
-alert("JS running");
 const firebaseConfig = {
   apiKey: "AIzaSyBHNu6DLAJysAwKVTxACSIZvQQ9g_bSOrU",
   authDomain: "football-academy-85b34.firebaseapp.com",
