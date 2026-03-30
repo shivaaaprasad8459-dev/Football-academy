@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel</title>
+</head>
+<body>
+
+<h2>Admin Panel</h2>
+
+<button onclick="loadPlayers()">Load Players</button>
+
+<ul id="playerList"></ul>
+
+<script>
+async function loadPlayers() {
+    const res = await fetch("https://2a05bc4c-aa29-4f87-a50a-f64aee66c885-00-2vdnq7uh50td4.pike.replit.dev/players");
+    const players = await res.json();
+
+    const list = document.getElementById("playerList");
+    list.innerHTML = "";
+
+    players.forEach(player => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+            ${player.name} (${player.email})
+            <button onclick="deletePlayer('${player._id}')">Delete</button>
+        `;
+        list.appendChild(li);
+    });
+}
+
+async function deletePlayer(id) {
+    await fetch("https://2a05bc4c-aa29-4f87-a50a-f64aee66c885-00-2vdnq7uh50td4.pike.replit.dev/player/" + id, {
+        method: "DELETE"
+    });
+
+    alert("Player deleted");
+    loadPlayers();
+}
+</script>
+
+</body>
+</html>
