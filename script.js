@@ -5,28 +5,45 @@ const firebaseConfig = {
   projectId: "football-academy-85b34",
 };
 
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+// 🔐 AUTH STATE (handles login UI + admin link)
 firebase.auth().onAuthStateChanged(function(user) {
+  const adminLink = document.getElementById("adminLink");
+
   if (user) {
-    document.getElementById("userInfo").innerText = "Logged in as: " + user.email;
-    document.getElementById("formSection").style.display = "block";
+    document.getElementById("userInfo").innerText =
+      "Logged in as: " + user.email;
 
-if (user.email === "shivaaaprasad8459@gmail.com") {
-    const adminLink = document.getElementById("adminLink");
+    // Hide login, show main content
+    document.getElementById("authSection").style.display = "none";
+    document.getElementById("mainContent").style.display = "block";
 
-if (adminLink) {
-    adminLink.style.display = "block";
-}
-}
+    // ✅ Admin access (ONLY your email)
+    if (adminLink) {
+      if (user.email === "shivaaaprasad8459@gmail.com") {
+        adminLink.style.display = "block";
+      } else {
+        adminLink.style.display = "none";
+      }
+    }
 
-   else {
+  } else {
     document.getElementById("userInfo").innerText = "Not logged in";
-    document.getElementById("formSection").style.display = "none";
-document.getElementById("adminLink").style.display = "none";
-  }
-}); 
 
-// SIGNUP
+    // Show login, hide main content
+    document.getElementById("authSection").style.display = "block";
+    document.getElementById("mainContent").style.display = "none";
+
+    // Hide admin link
+    if (adminLink) {
+      adminLink.style.display = "none";
+    }
+  }
+});
+
+// 📝 SIGNUP
 function signup() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
@@ -36,9 +53,8 @@ function signup() {
     .catch(err => alert(err.message));
 }
 
-// LOGIN
+// 🔑 LOGIN
 function login() {
-alert("Login clicked");
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
@@ -47,64 +63,43 @@ alert("Login clicked");
     .catch(err => alert(err.message));
 }
 
-// LOGOUT
+// 🚪 LOGOUT
 function logout() {
   firebase.auth().signOut()
-    .then(() => alert("Logged out!"));
+    .then(() => alert("Logged out!"))
+    .catch(err => console.error(err));
 }
 
-// TRIAL FORM SUBMIT
+// 📤 TRIAL FORM SUBMIT
 document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("trialForm");
+  const form = document.getElementById("trialForm");
 
-    if (form) {
-        form.addEventListener("submit", async function (e) {
-            e.preventDefault();
+  if (form) {
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
 
-            alert("Form submitted");
+      alert("Form submitted");
 
-            const data = {
-                name: document.querySelector('input[name="name"]').value,
-                email: document.querySelector('input[name="email"]').value
-            };
+      const data = {
+        name: document.querySelector('input[name="name"]').value,
+        email: document.querySelector('input[name="email"]').value
+      };
 
-            try {
-                const response = await fetch("https://2a05bc4c-aa29-4f87-a50a-f64aee66c885-00-2vdnq7uh50td4.pike.replit.dev/add-player", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                const result = await response.json();
-                alert(result.message);
-            } catch (error) {
-                console.error(error);
-                alert("Error submitting form");
-            }
+      try {
+        const response = await fetch("https://2a05bc4c-aa29-4f87-a50a-f64aee66c885-00-2vdnq7uh50td4.pike.replit.dev/add-player", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
         });
-    }
-}); 
 
-firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-        document.getElementById("userInfo").innerText =
-            "Logged in as: " + user.email;
-
-        // hide login
-        document.getElementById("authSection").style.display = "none";
-
-        // show form
-        document.getElementById("mainContent").style.display = "block";
-
-    } else {
-        document.getElementById("userInfo").innerText = "Not logged in";
-
-        // show login
-        document.getElementById("authSection").style.display = "block";
-
-        // hide form
-        document.getElementById("mainContent").style.display = "none";
-    }
+        const result = await response.json();
+        alert(result.message);
+      } catch (error) {
+        console.error(error);
+        alert("Error submitting form");
+      }
+    });
+  }
 });
