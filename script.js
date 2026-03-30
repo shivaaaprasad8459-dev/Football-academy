@@ -12,7 +12,11 @@ firebase.auth().onAuthStateChanged(function(user) {
     document.getElementById("formSection").style.display = "block";
 
 if (user.email === "shivaaaprasad8459@gmail.com") {
-    document.getElementById("adminLink").style.display = "block";
+    const adminLink = document.getElementById("adminLink");
+
+if (adminLink) {
+    adminLink.style.display = "block";
+}
 }
 
    else {
